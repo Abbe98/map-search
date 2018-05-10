@@ -11,7 +11,7 @@
     </form>
 
     <h2 v-if="searchResult.length > 0 || searchStatus === 'done'">Search Result</h2>
-    <p v-if="searchStatus === 'executing'">Loading results.</p>
+    <spinner v-if="searchStatus === 'executing'" line-fg-color="#00af89" class="margin-top-14"/>
     <p v-if="searchStatus === 'done' && searchResult.length === 0">No results found.</p>
     <ul v-if="searchResult.length > 0" class="result-list">
         <mapitem v-for="map in searchResult" v-bind:map="map" :key="map.id" />
@@ -28,10 +28,13 @@
 import mapitem from "./MapItem.vue";
 import { EventBus } from "../event-bus.js";
 
+import Spinner from 'vue-simple-spinner';
+
 export default {
   name: "sidebar",
   components: {
-    mapitem
+    mapitem,
+    Spinner
   },
   props: {
     featuredMap: false
