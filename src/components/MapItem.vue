@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     refineTitle: title => {
-      return title.slice(5).replace(/\.[^/.]+$/, "");
+      return title.slice(5).replace(/\.[^/.]+$/, "").replace(/_/g, " ");
     },
     clicked: function() {
       if (!this.active) {
