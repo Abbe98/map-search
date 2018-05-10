@@ -9,7 +9,7 @@
 
     <div v-if="active" class="extended">{{active}}
         <h4>Open in:</h4>
-        <a v-bind:href="map.attributes.source_uri">Wikimedia Commons</a>
+        <a v-bind:href="'https://commons.wikimedia.org/wiki/File:' + map.attributes.unique_id">Wikimedia Commons</a>
         <a v-bind:href="'https://warper.wmflabs.org/maps/' + map.id">Wikimaps Warper</a>
 
         <h4>Export as:</h4>
