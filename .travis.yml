@@ -5,6 +5,10 @@ node_js:
 
 script: npm run build
 
+branches:
+  except:
+  - build
+
 deploy:
   provider: pages
   skip-cleanup: true
