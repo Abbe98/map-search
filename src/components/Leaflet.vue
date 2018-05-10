@@ -57,6 +57,10 @@ export default {
       callback(map.getBounds());
     });
 
+    EventBus.$on('toggleFullscreen', () => {
+      map.toggleFullscreen();
+    });
+
   }
 }
 </script>

@@ -8,6 +8,8 @@
     </div>
 
     <div v-if="active" class="extended">
+        <button v-on:click="toggleFullscreen" class="mw-ui-button mw-ui-progressive mw-ui-block margin-top-5">View Map</button>
+
         <h4>Open in:</h4>
         <a v-bind:href="'https://commons.wikimedia.org/wiki/File:' + map.attributes.unique_id">Wikimedia Commons</a>
         <a v-bind:href="'https://warper.wmflabs.org/maps/' + map.id">Wikimaps Warper</a>
@@ -47,6 +49,9 @@ export default {
         this.active = false;
         EventBus.$emit("clearLayers");
       }
+    },
+    toggleFullscreen: () => {
+      EventBus.$emit("toggleFullscreen");
     }
   },
   mounted: function() {
@@ -137,5 +142,15 @@ export default {
   top: -20px;
   border-color: transparent transparent rgb(204, 204, 204) transparent;
   border-width: 10px;
+}
+
+button {
+  display: none !important;
+}
+
+@media (max-width: 700px) { 
+  button {
+    display: block !important;
+  }
 }
 </style>

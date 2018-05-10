@@ -86,4 +86,11 @@ ul {
   list-style: none;
   padding: 0;
 }
+
+@media (max-width: 700px) { 
+  .sidebar {
+    width: 100%;
+    z-index: 9999;
+  }
+}
 </style>
