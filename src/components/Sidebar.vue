@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     search: function(value, e) {
-      if (e) event.preventDefault();
+      if (e) e.preventDefault();
       this.searchStatus = "executing";
 
       let queryBounds = "";
