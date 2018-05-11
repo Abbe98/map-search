@@ -92,5 +92,9 @@ ul {
     width: 100%;
     z-index: 9999;
   }
+
+  .mw-ui-radio-label  {
+    display: none;
+  }
 }
 </style>
