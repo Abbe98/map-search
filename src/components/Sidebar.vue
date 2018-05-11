@@ -4,7 +4,7 @@
     <form>
         <input v-model="searchText" type="text" class="mw-ui-input" placeholder="Search by title"/>
         <label class="mw-ui-radio-label margin-top-5">
-            Limit serach to current map view.
+            Limit search to current map view.
             <input v-model="bbox" type="checkbox" class="mw-ui-checkbox" />
         </label>
         <button v-on:click="search(searchText, $event)" class="mw-ui-button mw-ui-constructive mw-ui-block margin-top-5">Search</button>
