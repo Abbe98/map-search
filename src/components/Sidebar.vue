@@ -1,8 +1,8 @@
 <template>
 <div class="sidebar">
     <h1>Search Maps</h1>
-    <button v-if="!username" v-on:click="signIn" class="mw-ui-button mw-ui-constructive sign-in">Sign in</button>
-    <button v-if="username" v-on:click="signOut" class="mw-ui-button mw-ui-constructive sign-in">Sign out</button>
+    <button v-if="!username" v-on:click="signIn" class="mw-ui-button mw-ui-constructive sign-in" >Sign in</button>
+    <button v-if="username" v-on:click="signOut" class="mw-ui-button mw-ui-constructive sign-in" v-bind:title="'Signed in as ' + username">Sign out</button>
     <form>
         <input v-model="searchText" type="text" class="mw-ui-input" placeholder="Search by title"/>
         <label class="mw-ui-radio-label margin-top-5">
