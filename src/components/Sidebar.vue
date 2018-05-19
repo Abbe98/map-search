@@ -1,6 +1,8 @@
 <template>
 <div class="sidebar">
     <h1>Search Maps</h1>
+    <button v-if="!username" v-on:click="signIn" class="mw-ui-button mw-ui-constructive sign-in">Sign in</button>
+    <button v-if="username" v-on:click="signOut" class="mw-ui-button mw-ui-constructive sign-in">Sign out</button>
     <form>
         <input v-model="searchText" type="text" class="mw-ui-input" placeholder="Search by title"/>
         <label class="mw-ui-radio-label margin-top-5">
@@ -27,6 +29,7 @@
 <script>
 import mapitem from "./MapItem.vue";
 import { EventBus } from "../event-bus.js";
+import { store } from "../main.js";
 
 import Spinner from 'vue-simple-spinner';
 
@@ -44,8 +47,13 @@ export default {
       searchResult: [],
       searchText: "",
       bbox: false,
-      searchStatus: "not-executed" // executing, done
+      searchStatus: "not-executed", // executing, done
     };
+  },
+  computed: {
+    username () {
+	    return store.state.username;
+    }
   },
   methods: {
     search: function(value, e) {
@@ -65,6 +73,30 @@ export default {
         this.searchResult = response.body.data;
         this.searchStatus = "done";
       });
+    },
+
+    signIn: function() {
+      const domain = 'https://warper.wmflabs.org';
+      let myPopup = window.open(domain + '/u/auth/mediawiki?omniauth_window_type=newWindow&auth_origin_url=' + window.location.href, 'myWindow');
+
+      // periodical message sender
+      const messenger = setInterval(function() {
+        const message = 'requestCredentials';
+        //send the message and target URI
+        myPopup.postMessage(message, domain);
+      }, 500);
+
+      // listen to response
+      window.addEventListener('message', (event) => {
+        // the message listener get's triggered by any URL make sure it's the right one
+        if (event.origin !== domain) return;
+        clearInterval(messenger);
+        store.commit('signIn', event.data);
+      }, false);
+    },
+
+    signOut: function() {
+      store.commit('signOut');
     }
   }
 };
@@ -80,6 +112,15 @@ export default {
   background-color: #f6f6f6;
   border-right: 1px solid rgb(204, 204, 204);
   overflow-y: scroll;
+}
+
+h1 {
+  display: block;
+  float: left;
+}
+
+.sign-in {
+  float: right;
 }
 
 ul {

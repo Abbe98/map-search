@@ -14,7 +14,8 @@
     "vue": "^2.5.16",
     "vue-async-computed": "^3.3.1",
     "vue-resource": "^1.5.0",
-    "vue-simple-spinner": "^1.2.8"
+    "vue-simple-spinner": "^1.2.8",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.9",
