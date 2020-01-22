@@ -91,6 +91,8 @@ export default {
   float: left;
   box-sizing: border-box;
   padding-left: 7px;
+  max-width: 263px;
+  overflow: hidden;
 }
 
 .main div h3 {
