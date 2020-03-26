@@ -47,18 +47,26 @@ export default {
         EventBus.$emit("selected", this.map);
       } else {
         this.active = false;
+        this.toggleURLHash('');
         EventBus.$emit("clearLayers");
       }
     },
     toggleFullscreen: () => {
       EventBus.$emit("toggleFullscreen");
+    },
+    toggleURLHash: (id) => {
+      window.location.hash = "#" + id;
     }
   },
   mounted: function() {
-    if (this.active) EventBus.$emit("selected", this.map);
+    if (this.active) {
+      EventBus.$emit("selected", this.map);
+      this.toggleURLHash(this.map.id);
+    }
 
     EventBus.$on("selected", selected => {
       if (selected.id !== this.map.id) this.active = false;
+      this.toggleURLHash(selected.id);
     });
   }
 };

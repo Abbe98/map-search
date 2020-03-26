@@ -19,7 +19,7 @@
         <mapitem v-for="map in searchResult" v-bind:map="map" :key="map.id" />
     </ul>
 
-    <h2 v-if="featuredMap">Featured Map</h2>
+    <h2 v-if="featuredMap">Highlight</h2>
     <ul v-if="featuredMap" class="result-list">
         <mapitem v-bind:map="featuredMap" v-bind:activeInit="true" />
     </ul>

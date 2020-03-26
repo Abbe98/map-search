@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <sidebar v-bind:featuredMap="featuredMap"/>
+    <sidebar v-bind:featuredMap="map"/>
     <leaflet/>
   </div>
 </template>
@@ -16,6 +16,21 @@ export default {
     leaflet
   },
   asyncComputed: {
+    map: {
+      get() {
+        const mapFromURL = window.location.hash.substring(1);
+        console.log(mapFromURL)
+        if (!mapFromURL) return this.featuredMap();
+
+        // TODO error handeling
+        return this.$http
+          .get(
+            "maps/" + mapFromURL
+          )
+          .then(response => response.body.data);
+      }
+    },
+
     featuredMap: {
       get() {
         const featuredMaps = ["86"];
