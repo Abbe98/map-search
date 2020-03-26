@@ -19,8 +19,7 @@ export default {
     map: {
       get() {
         const mapFromURL = window.location.hash.substring(1);
-        console.log(mapFromURL)
-        if (!mapFromURL) return this.featuredMap();
+        if (!mapFromURL) return this.featuredMap;
 
         // TODO error handeling
         return this.$http
