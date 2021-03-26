@@ -5,6 +5,7 @@
 <script>
 import L from 'leaflet';
 import Fullscreen from 'leaflet-fullscreen';
+import {} from '../Leaflet.Slider.js';
 import Locate from 'leaflet.locatecontrol';
 import { EventBus } from '../event-bus.js';
 
@@ -36,17 +37,25 @@ export default {
     EventBus.$on('selected', selected => {
       layers.clearLayers();
 
-      layers.addLayer(L.tileLayer.wms(selected.links.wms, {
+      let currentLayerMap = L.tileLayer.wms(selected.links.wms, {
         layers: 'MapWarper',
         format: 'image/png',
         attribution: `<a href="https://commons.wikimedia.org/wiki/${selected.attributes.title}">Wikimedia Commons</a>`
-      }));
+      });
+
+      layers.addLayer(currentLayerMap);
 
       let bbox = selected.attributes.bbox.split(',');
       map.fitBounds([
         [bbox[3], bbox[2]],
         [bbox[1], bbox[0]]
       ]);
+
+      let slider = L.control.slider({ position: 'bottomleft' }).addTo(map);
+        slider._container.addEventListener('sliderChange', function (e) {
+          let opacity = (100- e.detail.value) / 100;
+          currentLayerMap.setOpacity(opacity);
+        }, false);
     });
 
     EventBus.$on('clearLayers', () => {
