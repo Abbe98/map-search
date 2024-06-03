@@ -13,6 +13,7 @@
         <h4>Open in:</h4>
         <a v-bind:href="'https://commons.wikimedia.org/wiki/File:' + map.attributes.unique_id">Wikimedia Commons</a>
         <a v-bind:href="'https://warper.wmflabs.org/maps/' + map.id">Wikimaps Warper</a>
+        <a v-bind:href="'https://wd-image-positions.toolforge.org/file/' + map.attributes.unique_id">Wikidata Image Positions</a>
 
         <h4>Export as:</h4>
         <a v-bind:href="map.links.geotiff" download>GeoTiff</a>
