@@ -35,4 +35,4 @@ jobs:
     steps:
       - name: Publish
         id: publish
-        users: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4
